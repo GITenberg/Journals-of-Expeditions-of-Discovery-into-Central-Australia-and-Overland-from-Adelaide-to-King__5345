@@ -1,0 +1,30 @@
+_repo: Journals-of-Expeditions-of-Discovery-into-Central-Australia-and-Overland-from-Adelaide-to-King__5345
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Eyre, Edward John
+    birthdate: 1815
+    deathdate: 1901
+    gutenberg_agent_id: '1780'
+    url: http://www.gutenberg.org/2009/agents/1780
+    wikipedia: http://en.wikipedia.org/wiki/Edward_John_Eyre
+description: ''
+gutenberg_issued: '2004-10-05'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '5345'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Australia -- Discovery and exploration'
+- !lcc 'DU'
+- !lcsh 'Ethnology -- Australia'
+- GITenberg
+title: 'Journals of Expeditions of Discovery into Central Australia and Overland from
+  Adelaide to King George''s Sound in the Years 1840-1: Sent By the Colonists of South
+  Australia, with the Sanction and Support of the Government: Including an Account
+  of the Manners and Customs of the Aborigines and the State of Their Relations with
+  Europeans — Volume 02'
+url: http://www.gutenberg.org/ebooks/5345
