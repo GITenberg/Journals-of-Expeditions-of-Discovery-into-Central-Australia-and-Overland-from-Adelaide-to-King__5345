@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: Xv1SMOD8wczTmVGs1TB94/GFeZc2mF2CwaDookDaHOPX1Re/DYqc65/Ie/dHBFtiMjDbCKxYZil0x8vSVq10ZBT1TyfPTaa9SMHMdgCP3XNpBPTJwr+LQDC/Yvirg4fQBhL/jAMTijhWcbMHPsv/SooMFrYdGyXmuiO/YQCON0lWFDfDRbkJSkB+QeyAUE8bQgj7v6N32/TI43odCyhgpe8Y1iBB4h9lAHp7AoekWdaC05fYUwMdOmAW4Hle6RIlm/H7UYTIFSYlG73MO1ngw34EE4I/LxT05PY4zXd9d3kQm86exgiAT103ke34JrWovc2p9OSPIYeKYoy8jlZx1dGp6yQXgPRayFNiW1hjy4ekk644HaFOVb7sqYD0oNuMsRGMlfHKVaBCqqgADc78pPBWjwIi4Xo9IvagVXbx/agc/Nxzr1TvVrQp3w5XewYSCho83cGyYykFADXtFErrfvTobSgtrMqMjNHRA66rJ4S09Si+eLxfj0ncH1ajTv1TEZOkJZCHZqeaLWECUZhh1O4iM1KzksUjALYKOyqJqTv/79UUa3FF6t41pFsbVE3HGOyrp+c0A/IF/XcaeZljm1bTmnsMTWc9C4bTuGDRswMB8jd0uLhGol1l5SeqOB55ZLN6bS5hJVgO5S1naN2uD4AwHlM3cy9ZY50GmpD6csU=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/Journals-of-Expeditions-of-Discovery-into-Central-Australia-and-Overland-from-Adelaide-to-King__5345
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
